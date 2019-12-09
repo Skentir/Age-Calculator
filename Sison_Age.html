@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Age Calculator</title>
+  <link rel="shortcut icon" href="https://png.icons8.com/calendar/nolan/186/000000" type="image/png">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  <style type="text/css">
+    body {
+      font-family: "Roboto";
+      background: linear-gradient(#a08bea, #38e0f1);
+      background-attachment: fixed;
+      position: center;
+      text-align: center;
+    }
+    .question {
+      font-family: "Roboto", serif;
+      font-size: 60px;
+      color: white;
+      margin-bottom: 5px;
+    }
+    #header {
+      font-family: "Roboto", serif;
+      color: white;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 30px;
+    }
+    #calendar {
+      display: inline-block;
+      font-size: 18px;
+      text-align: center;
+      width: 200px;
+      left: 500px;
+    }
+    .textbox {
+      width: 30%;
+      height: 5%;
+      font-family: "Roboto:300", sans-serif;
+      font-size: 35px;
+    }
+    .btn {
+      margin-top: 15px;
+      font-size: 18px;
+      font-family: "Roboto", serif;
+    }
+    input {
+      font-size: 24px;
+      font-family: sans-serif;
+      color: #8662d7;
+    }
+    #result {
+      background: transparent;
+      text-align: center;
+      font-size: 130px;
+      border: 0px solid;
+      width: 300px;
+      outline: none;
+    }
+    #bottom {
+      color: #8662d7;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+    }
+    #yourAge {
+      margin-bottom: -20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="header">Age Calculator</h1>
+
+  <p>
+    <label class="question">When were you born?</label><br><br>
+
+    <input type="date" id="calendar" class='form-control' data-date-formate="mm-dd-yyyy" type="date">
+    <br>
+    <button type="submit" class="btn btn-primary btn-sm" id="enter">Enter</button>
+    <button class="btn btn-default btn-sm" id="reset-date">Reset</button>
+
+
+    <br><label class="question" id="yourAge">Your Age is</label><br>
+    <input type="text" id="result">
+
+  </p>
+  <p id="bottom">
+    <a href="https://icons8.com" id="icon">Icon pack by Icons8</a><br> Crafted with <img src="https://png.icons8.com/heart-outline/dusk/18/000000"> by Kirsten Sison</p>
+</body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+
+<script>
+$(function () {
+   $('#calendar').datepicker({
+        inline: true,
+        sideBySide: true
+   });
+});
+</script>
+<script>
+  $("#reset-date").click(function() {
+    $("#result").val(" ");
+    $("#calendar")
+      .val(" ")
+      .datepicker("update");
+  });
+</script>
+
+<script>
+  function isLeapYear(year) {
+    return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+  }
+  
+  function calculateAge(birthdate) {
+    var currentTime = new Date();
+    var currentYear = currentTime.getFullYear();
+    var age = currentYear - birthdate.getFullYear();
+    var i = currentTime.getMonth() - birthdate.getMonth();
+
+    if (i < 0 || (i === 0 && currentTime < birthdate.getDate())) {
+        age--;
+    }
+  
+    return age;
+  }
+  
+  $("#enter").click(function() {
+    var Temp = document.getElementById("calendar");
+    var myDate = new Date(Temp.value);
+    var age = calculateAge(myDate);
+  
+    $("#result").val(age);
+  });
+</script>
+</html>
+
