@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Fortune Teller</title>
+  <link rel="shortcut icon" href="https://png.icons8.com/person/nolan/50/000000" type="image/png">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&effect=3d-float" rel="stylesheet">
+  <style type="text/css">
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: "Roboto";
+      background: linear-gradient(45deg,#a08bea 0%, #FC6A4A 100%);
+      background-attachment: fixed;
+      position: center;
+      text-align: center;
+     }
+
+    .b1 {
+      width: 100%;
+      height: 100%;
+      margin:auto;
+      background-color: linear-gradient(#a08bea, #38e0f1) no-repeat 50% 50%;
+      top: 0;
+      display: table;
+      background-size: cover;
+    }
+
+    .h1 .in1 {
+      display: table-cell;
+      vertical-align: middle;
+      width:100%;
+      max-width: none;
+    }
+    .content {
+      max-width: 500px;
+      margin: auto;
+      text-align: center;
+    }
+    .content h1 {
+      font-family: "Century Gothic", sans-serif;
+      color: #f9f3f4;
+      font-size: 450%;
+      text-shadow: 0 0 300px #000;
+      font-weight: bold;
+      margin-top: 250px;
+    }
+    .content .btn {
+      border-radius: 5px;
+      color: #f9f3f4;
+      text-decoration: none;
+      border: 2px solid;
+      font-weight: bold; 
+      padding: 7px 13px;
+    } 
+    .content .btn:hover{
+      color: white;
+    }
+    p {
+      line-height: 200%;
+      font-family:"Roboto";
+    }
+    #question {
+      font-family: "Roboto", serif;
+      font-size: 60px;
+      color: white;
+      margin-bottom: 15px;
+      position: center;
+    }
+    #header {
+      font-family: "Roboto", serif;
+      color: white;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 30px;
+    }
+    #calendar {
+      display: inline-block;
+      font-size: 18px;
+      text-align: center;
+      width: 200px;
+      left: 500px;
+    }
+    .textbox {
+      width: 30%;
+      height: 5%;
+      font-family: "Roboto:300", sans-serif;
+      font-size: 35px;
+    }
+    .btn {
+      margin-top: 15px;
+      font-size: 18px;
+      font-family: "Roboto", serif;
+    }
+    input {
+      font-size: 18px;
+      font-family: sans-serif;
+      color: #B2F9DC;
+      display: inline;
+      margin-right: auto;
+      margin-left: auto;
+
+    }
+    #enter {      
+      color:white;
+      text-decoration: none;
+      font-family: "Roboto";
+      background:transparent;
+      padding: 8px 23px;
+      border: 2px solid white;
+      outline: 1px solid rgba(255,255,255,.7);
+      transition: all .7s;
+      margin-top: -5px;
+    }
+    #reset-date {      
+      color:white;
+      text-decoration: none;
+      font-family: "Roboto";
+      background:transparent;
+      padding: 8px 23px;
+      border: 2px solid white;
+      outline: 1px solid rgba(255,255,255,.7);
+      transition: all .7s;
+      margin-left:20px;
+      margin-top: -5px;
+    }
+    #enter:hover {
+      text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+      box-shadow: insert 0 0 20px rgba(255,255,255, .2),
+      0  0 20px rgba(255,255,255,0.3);
+      outline-color:  rgba(255,255,255,0);
+      outline-offset: 15px;
+    }
+
+    #reset-date:hover {
+      text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+      box-shadow: insert 0 0 20px rgba(255,255,255, .2),
+      0  0 20px rgba(255,255,255,0.3);
+      outline-color:  rgba(255,255,255,0);
+      outline-offset: 15px;
+    }
+    #ageResult {
+      background: transparent;
+      text-align: center;
+      border: 0px solid;
+      outline: none;
+      display: inline;
+      position: relative;
+    }
+    #leapResult {
+      background: transparent;
+      text-align: center;
+      border: 0px solid;
+      outline: none;
+    }
+    #zodiacResult {
+      background: transparent;
+      text-align: center;
+      border: 0px solid;
+      outline: none;
+    }
+    #animalResult {
+      background: transparent;
+      text-align: center;
+      border: 0px solid;
+
+      outline: none;
+    }
+    #luckyResult {
+      background: transparent;
+      text-align: center;
+      border: 0px solid;
+      outline: none;
+    }
+    #colorResult {
+      background: transparent;
+      text-align: center;
+      border: 0px solid;
+      outline: none;
+    }
+    #quoteResult {
+      background: transparent;
+      text-align: center;
+      border: 0px solid;
+      outline: none;
+    }
+    #bottom {
+      color: white;
+      position: relative;
+      bottom: -60px;
+      width: 100%;
+      text-align: center;
+    }
+    blink {
+      -webkit-animation:blink 2.2s linear infinite;
+      -moz-animation:blink 2.2s linear infinite;
+      animation:blink 2.2s linear infinite;
+    }
+     @-webkit-keyframes blink {
+      0%{opacity: 1;}
+      50%{opacity: 0;}
+      100%{opacity: 1;}
+    }
+     @-moz-keyframes blink {
+      0%{opacity: 1;}
+      50%{opacity: 0;}
+      100%{opacity: 1;}
+    }
+    @keyframes blink {
+      0%{opacity: 1;}
+      50%{opacity: 0;}
+      100%{opacity: 1;}
+    }
+    ::-webkit-input-placeholder { 
+      color: white;
+    }
+    :-ms-input-placeholder { 
+      color: white;
+    }
+    ::-moz-placeholder { 
+      color: red;
+      opacity: 1;
+    }
+    :-moz-placeholder {
+      color: red;
+      opacity: 1;
+    }
+    #icon {
+      color: white;
+    }
+  
+  </style>
+</head>
+
+<body>
+<section class="b1">
+  <div class="in1">
+    <div class="content">
+      <h1 class="font-effect-3d-float"><img src="https://orig00.deviantart.net/f47a/f/2013/100/f/d/magic_ball_ii_by_luisbc-d613ey7.gif" style="width:20px;height:20px;"><blink> Fortune Teller </blink> <img src="https://orig00.deviantart.net/f47a/f/2013/100/f/d/magic_ball_ii_by_luisbc-d613ey7.gif" style="width:20px;height:20px;"></h1>
+      <a class="btn" href = "#fortune"> Get Started</a>
+    </div>
+  </div>
+</section><br>
+
+<section id="fortune">
+  
+   <h2><label id="question" class="font-effect-3d-float">When were you born?</label><br><br></section></h2>
+  <p>
+    <input type="date" id="calendar" class='form-control' data-date-formate="mm-dd-yyyy" type="date"></p>
+    <br>
+  <p>
+    <button type="submit" class="btn btn-primary btn-sm" id="enter">Enter</button>
+    <button class="btn btn-default btn-sm" id="reset-date">Reset</button><br><br>
+  </p>
+
+  <div id="readings">
+    <p><input type="text" style="width:50%;" id="ageResult" placeholder="Age"><br></p>
+    <p><input type="text" style="width:50%;" id="leapResult" placeholder="Leap"><br></p>
+    <p><input type="text" style="width:50%;" id="zodiacResult" placeholder="Zodiac Sign"><br></p>
+    <p><input type="text" style="width:50%;" id="animalResult" placeholder="Animal"><br></p>
+    <p><input type="text" style="width:50%;" id="luckyResult" placeholder="Lucky Number"><br></p>
+    <p><input type="text" style="width:50%;" id="colorResult" placeholder="Lucky Color"><br></p>
+    <p><input type="text" style="width:50%;" id="quoteResult" placeholder="Quote of the Day"></p>
+  </div>
+
+<p id="bottom">
+    <a href="https://icons8.com" id="icon">Icon pack by Icons8</a><br> Crafted with <img src="https://png.icons8.com/heart-outline/dusk/18/000000"> by Kirsten Sison</p>
+</section>
+</body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+
+<script>
+$(function () {
+   $('#calendar').datepicker({
+        inline: true,
+        sideBySide: true
+   });
+});
+</script>
+<script>
+  $("#reset-date").click(function() {
+    $("#ageResult").val(" ");
+    $("#leapResult").val(" ");
+    $("#zodiacResult").val(" ");
+    $("#animalResult").val(" ");
+    $("#luckyResult").val(" ");
+    $("#colorResult").val(" ");
+    $("#quoteResult").val(" ");
+    $("#calendar")
+      .val(" ")
+      .datepicker("update");
+  });
+</script>
+
+<script>
+  
+  function calculateAge(birthdate) {
+    var currentTime = new Date();
+    var currentYear = currentTime.getFullYear();
+    var age = currentYear - birthdate.getFullYear();
+    var i = currentTime.getMonth() - birthdate.getMonth();
+
+    if (i < 0 || (i === 0 && currentTime < birthdate.getDate())) {
+        age--;
+    } 
+    return "You are " + age + " years old!";
+
+  }
+  
+  function isLeapYear(year) {
+    if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+      return "You are a Leap Baby!"; /* True */
+    }
+    else {
+      return "You are not a Leap Baby!"; /* False */
+    }
+  }
+
+  function findZodiac(day, month) {
+    var zodiac_list = ['Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius'];
+    var last_day = [19, 18, 20, 20, 21, 21, 22, 22, 21, 22, 21, 20];
+       month += (day > last_day[month]);
+       month %= 12;
+    return "Your Zodiac sign is " + zodiac_list[month];
+}
+
+  function findAnimal(year) {
+
+  if (year % 12 === 0) {
+    return 'Year of the Monkey'; /* Monkey */
+  }
+  else if (year % 12 === 1) {
+    return 'Year of the Rooster'; /* Rooster */
+  }
+  else if (year % 12 === 2) {
+    return 'Year of the Dog'; /* Dog */
+  }
+  else if (year % 12 === 3) {
+    return 'Year of the Pig'; /* Pig */
+  }
+  else if (year % 12 === 4) {
+    return 'Year of the Rat'; /* Rat */
+  }
+  else if (year % 12 === 5) {
+    return 'Year of the Ox'; /* Ox */
+  }
+  else if (year % 12 === 6) {
+    return 'Year of the Tiger'; /* Tiger */
+  }
+  else if (year % 12 === 7) {
+    return 'Year of the Rabbit'; /* Rabbit */
+  }
+  else if (year % 12 === 8) {
+    return 'Year of the Dragon'; /* Dragon */
+  }
+  else if (year % 12 === 9) {
+    return 'Year of the Snake'; /* Snake */
+  } 
+  else if (year % 12 === 10) {
+    return 'Year of the Horse'; /* Horse */
+  }
+  else {
+    return 'Year of the Sheep'; /* Sheep */
+  }
+}
+
+  function randomLuckyNumber() {
+  var random = Math.floor(Math.random() * 100 + 1);
+  return "Your lucky number is " + random;
+}
+
+  function randomColor() {
+  var color_list = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Violet', 'Pink', 'White', 'Black Niqqa', 'Gold', 'Silver'];
+  var ran_color = Math.floor(Math.random() * color_list.length());
+  return color_list[ran_color];
+}
+
+  function randomColors() {
+     var colors = ['Black','White','Gold', 'Silver','Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Violet', 'Pink'];
+     var M = colors[Math.floor(Math.random() * colors.length)];
+     return "Your lucky color is " + M;
+   }
+
+  function randomQuotes() {
+     var quotes = [
+     '\"Self-love is the greatest love.\"', 
+     '\"Anger is poison to the soul.\"', 
+     '\"Always be grateful.\"',
+     '\"Once you need less, you will need more.\"',
+     '\"Never stop asking why.\"',
+     '\"Say what you mean, but don\'t say it mean\"',
+     '\"Love when you\'re ready, not when you\'re lonely.\"',
+     '\"Knowing yourself is the beginning of wisdom.\"',
+     '\"C\'est la vie!\"',
+     '\"Little by little, one travels far.\"',
+     '\"Alive or just breathing?\"',
+     '\"Storms don\'t last forever.\"',
+     '\"Old ways won\'t open new doors.\"',
+     '\"Open your mind before your mouth\"',
+     '\"One kind word can change a person\'s day.\"'];
+     var Q = quotes[Math.floor(Math.random() * quotes.length)];
+     return Q;
+   }
+</script>
+
+<script>
+  $("#enter").click(function() {
+    var Temp = document.getElementById("calendar");
+    var myDate = new Date(Temp.value);
+    var age = calculateAge(myDate);
+
+    var Year = myDate.getFullYear();
+    var Month = myDate.getMonth();
+    var Day = myDate.getDate();
+  
+    $("#ageResult").val(age);
+    $("#leapResult").val(isLeapYear(Year));
+    $("#zodiacResult").val(findZodiac(Day, Month));
+    $("#animalResult").val(findAnimal(Year));
+    $("#luckyResult").val(randomLuckyNumber());
+    $("#colorResult").val(randomColors());
+    $("#quoteResult").val(randomQuotes());
+  });
+</script>
+</html>
+
